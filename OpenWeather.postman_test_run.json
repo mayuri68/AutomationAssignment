@@ -1,0 +1,284 @@
+{
+	"id": "2f535286-cb34-4776-bdb4-9a218156cf57",
+	"name": "OpenWeather",
+	"timestamp": "2020-09-03T08:41:28.522Z",
+	"collection_id": "8a6a7fe5-a041-4654-8bad-e309f62ad062",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 11,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "33055f64-dc35-49b6-8ac7-30a511b07aa7",
+			"name": "POST Without KEYS",
+			"url": "http://api.openweathermap.org/data/3.0/stations",
+			"time": 91,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Check Return Code": true,
+				"Check Response Message": true
+			},
+			"testPassFailCounts": {
+				"Check Return Code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check Response Message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				91
+			],
+			"allTests": [
+				{
+					"Check Return Code": true,
+					"Check Response Message": true
+				}
+			]
+		},
+		{
+			"id": "053b2228-70b2-4884-a97f-85d97d33cf0a",
+			"name": "Create Stations 1",
+			"url": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 381,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Check External ID": true
+			},
+			"testPassFailCounts": {
+				"Check External ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				381
+			],
+			"allTests": [
+				{
+					"Check External ID": true
+				}
+			]
+		},
+		{
+			"id": "041bf62f-8ef0-402f-a4a1-6f1ab6f3c6a8",
+			"name": "Create Stations 2",
+			"url": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 384,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Check External ID": true
+			},
+			"testPassFailCounts": {
+				"Check External ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				384
+			],
+			"allTests": [
+				{
+					"Check External ID": true
+				}
+			]
+		},
+		{
+			"id": "65e1cd5c-51ba-4891-9edd-2e5a041d73be",
+			"name": "Get Stations",
+			"url": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 382,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Check External ID": true
+			},
+			"testPassFailCounts": {
+				"Check External ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				382
+			],
+			"allTests": [
+				{
+					"Check External ID": true
+				}
+			]
+		},
+		{
+			"id": "e51eb076-6e2a-4f70-83d8-bebe8ef6e3b4",
+			"name": "Delete Station1 and verify 204",
+			"url": "http://api.openweathermap.org/data/3.0/stations/5f50ac39cca8ce0001ef5854?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 480,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Check Return Code": true
+			},
+			"testPassFailCounts": {
+				"Check Return Code": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				480
+			],
+			"allTests": [
+				{
+					"Check Return Code": true
+				}
+			]
+		},
+		{
+			"id": "295e24c7-b675-4562-aea8-c47a332217b9",
+			"name": "Delete Station2 and verify 204",
+			"url": "http://api.openweathermap.org/data/3.0/stations/5f50ac39cca8ce0001ef5855?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 406,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Check Return Code": true
+			},
+			"testPassFailCounts": {
+				"Check Return Code": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				406
+			],
+			"allTests": [
+				{
+					"Check Return Code": true
+				}
+			]
+		},
+		{
+			"id": "59270583-6cec-491a-a1cf-582dcf6fd51e",
+			"name": "Delete Stations1 and verify 404",
+			"url": "http://api.openweathermap.org/data/3.0/stations/5f50ac39cca8ce0001ef5854?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 537,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Check Return Code": true,
+				"Check Message": true
+			},
+			"testPassFailCounts": {
+				"Check Return Code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check Message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				537
+			],
+			"allTests": [
+				{
+					"Check Return Code": true,
+					"Check Message": true
+				}
+			]
+		},
+		{
+			"id": "66e045f6-3ed9-4d12-8e3c-118ac1a83857",
+			"name": "Delete Station 2 and verify 404",
+			"url": "http://api.openweathermap.org/data/3.0/stations/5f50ac39cca8ce0001ef5855?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+			"time": 430,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Check Return Code": true,
+				"Check Message": true
+			},
+			"testPassFailCounts": {
+				"Check Return Code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check Message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				430
+			],
+			"allTests": [
+				{
+					"Check Return Code": true,
+					"Check Message": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3091,
+	"collection": {
+		"requests": [
+			{
+				"id": "33055f64-dc35-49b6-8ac7-30a511b07aa7",
+				"method": "POST"
+			},
+			{
+				"id": "053b2228-70b2-4884-a97f-85d97d33cf0a",
+				"method": "POST"
+			},
+			{
+				"id": "041bf62f-8ef0-402f-a4a1-6f1ab6f3c6a8",
+				"method": "POST"
+			},
+			{
+				"id": "65e1cd5c-51ba-4891-9edd-2e5a041d73be",
+				"method": "GET"
+			},
+			{
+				"id": "e51eb076-6e2a-4f70-83d8-bebe8ef6e3b4",
+				"method": "DELETE"
+			},
+			{
+				"id": "295e24c7-b675-4562-aea8-c47a332217b9",
+				"method": "DELETE"
+			},
+			{
+				"id": "59270583-6cec-491a-a1cf-582dcf6fd51e",
+				"method": "DELETE"
+			},
+			{
+				"id": "66e045f6-3ed9-4d12-8e3c-118ac1a83857",
+				"method": "DELETE"
+			}
+		]
+	}
+}

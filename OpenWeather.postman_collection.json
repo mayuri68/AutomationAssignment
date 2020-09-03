@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "8a6a7fe5-a041-4654-8bad-e309f62ad062",
+		"name": "OpenWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Without KEYS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "713f197a-4c40-4a84-a055-4b2f9ddd933e",
+						"exec": [
+							"pm.test(\"Check Return Code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Check Response Message\",function() {",
+							"    var res=pm.response.json();",
+							"    ",
+							"    pm.expect(res.message).to.eql(\"Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.\");",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"external_id\": \"SF_UPD001\",\n     \"name\": \"Mayuri Demo\",\n     \"latitude\": 37.80,\n     \"longitude\": -122.47,\n     \"altitude\": 143\n}"
+				},
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Stations 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6deab44-a099-43ab-91ef-8a2296107f9b",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"ID1\", jsonData.ID);",
+							"",
+							"pm.test(\"Check External ID\",function() {",
+							"    var res=pm.response.json();",
+							"    pm.expect(res.external_id).to.eql('DEMO_TEST01');",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"external_id\": \"DEMO_TEST01\",\n     \"name\": \"Interview station 1\",\n     \"latitude\": 33.33,\n     \"longitude\": -111.43,\n     \"altitude\": 444\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "524901",
+							"disabled": true
+						},
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Stations 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba29c787-b378-44cd-af6e-630e34528edd",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"ID2\", jsonData.ID);",
+							"",
+							"pm.test(\"Check External ID\",function() {",
+							"    var res=pm.response.json();",
+							"    pm.expect(res.external_id).to.eql('INTERVIEW1');",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"external_id\": \"INTERVIEW1\",\n     \"name\": \"Interview station 2\",\n     \"latitude\": 33.34,\n     \"longitude\": -12.44,\n     \"altitude\": 444\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "29ca1251-6112-40bf-bcd8-bdfbab64405e",
+						"exec": [
+							"pm.test(\"Check External ID\",function() {",
+							"    var res=pm.response.json();",
+							"    pm.expect(res[0].external_id).to.eql('DEMO_TEST01');",
+							"    pm.expect(res[1].external_id).to.eql('INTERVIEW1');",
+							"",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Station1 and verify 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e8f4221-24d8-466c-9ff8-d6d655a1318f",
+						"exec": [
+							"//Test 1",
+							"pm.test(\"Check Return Code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations/{{ID1}}?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations",
+						"{{ID1}}"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Station2 and verify 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a3f419d-89d1-4be5-9d2c-4ece1721c5e8",
+						"exec": [
+							"//Test 1",
+							"pm.test(\"Check Return Code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations/{{ID2}}?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations",
+						"{{ID2}}"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Stations1 and verify 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9de67a5f-f69e-4924-9ef5-e581e21a4c0b",
+						"exec": [
+							"//Test 1",
+							"pm.test(\"Check Return Code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"",
+							"});",
+							"",
+							"//Check Message",
+							"pm.test(\"Check Message\",function() {",
+							"    var res=pm.response.json();",
+							"    pm.expect(res.message).to.eql('Station not found');",
+							"   ",
+							"",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations/{{ID1}}?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations",
+						"{{ID1}}"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Station 2 and verify 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dc022a7-edcb-4dd2-bb41-40e67832d654",
+						"exec": [
+							"//Test 1",
+							"pm.test(\"Check Return Code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"",
+							"});",
+							"",
+							"//Check Message",
+							"pm.test(\"Check Message\",function() {",
+							"    var res=pm.response.json();",
+							"    pm.expect(res.message).to.eql('Station not found');",
+							"   ",
+							"",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/3.0/stations/{{ID2}}?APPID=091fa7223b98c3bf1e4939e71ca14ea6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"3.0",
+						"stations",
+						"{{ID2}}"
+					],
+					"query": [
+						{
+							"key": "APPID",
+							"value": "091fa7223b98c3bf1e4939e71ca14ea6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
